@@ -1,0 +1,44 @@
+{
+  "name": "transport-api-client",
+  "version": "1.0.0",
+  "description": "Inofficial client library for the opendata transport API, covering Swiss public transport informations",
+  "main": "dist/index.js",
+  "typings": "definitions/index",
+  "typescript": {
+    "definition": "definitions/index"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "keywords": [
+    "public",
+    "transport",
+    "api",
+    "opendata",
+    "swiss",
+    "switzerland",
+    "typescript",
+    "javascript",
+    "ts",
+    "js",
+    "sbb",
+    "railway",
+    "timetable",
+    "station"
+  ],
+  "author": "Robin Göppert",
+  "license": "CC-BY-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robingoeppert/transport-api-client.git"
+  },
+  "dependencies": {
+    "@types/node": "^9.4.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.2.4",
+    "merge2": "^1.2.1",
+    "typescript": "^2.7.1"
+  }
+}
