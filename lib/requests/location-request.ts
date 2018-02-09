@@ -9,7 +9,7 @@ export class LocationRequest extends TransportApiRequest {
 
     constructor() {
         super();
-        this.url = this.url + 'locations';
+        this.url += 'locations';
     }
 
 
@@ -19,7 +19,7 @@ export class LocationRequest extends TransportApiRequest {
      * @returns this LocationsRequest
      */
     byName(query: string): LocationRequest {
-        this.url = this.url + this.getParamLeader() + 'query=' + encodeURIComponent(query);
+        this.url += this.getParamLeader() + 'query=' + encodeURIComponent(query);
 
         return this;
     }
@@ -31,6 +31,7 @@ export class LocationRequest extends TransportApiRequest {
      * @returns this LocationsRequest
      */
     byCoordinates(x: number, y: number): LocationRequest {
+        /* TODO implementation */
         return this;
     }
 
@@ -39,8 +40,8 @@ export class LocationRequest extends TransportApiRequest {
      * @param {LocationType} type
      * @returns {LocationRequest}
      */
-    withType(type: LocationType): LocationRequest {
-        this.url = this.url + this.getParamLeader() + 'type=' + encodeURIComponent(type);
+    ofType(type: LocationType): LocationRequest {
+        this.url += this.getParamLeader() + 'type=' + encodeURIComponent(type);
 
         return this;
     }
@@ -51,7 +52,7 @@ export class LocationRequest extends TransportApiRequest {
      */
     withTransports(...transportations: TransportationType[]): LocationRequest {
         for (let transportation of transportations) {
-            this.url = this.url + this.getParamLeader() + 'transportations[]=' + encodeURIComponent(transportation);
+            this.url += this.getParamLeader() + 'transportations[]=' + encodeURIComponent(transportation);
         }
 
         return this;

@@ -16,7 +16,7 @@ var LocationRequest = /** @class */ (function (_super) {
     __extends(LocationRequest, _super);
     function LocationRequest() {
         var _this = _super.call(this) || this;
-        _this.url = _this.url + 'locations';
+        _this.url += 'locations';
         return _this;
     }
     /**
@@ -25,7 +25,7 @@ var LocationRequest = /** @class */ (function (_super) {
      * @returns this LocationsRequest
      */
     LocationRequest.prototype.byName = function (query) {
-        this.url = this.url + this.getParamLeader() + 'query=' + encodeURIComponent(query);
+        this.url += this.getParamLeader() + 'query=' + encodeURIComponent(query);
         return this;
     };
     /**
@@ -35,6 +35,7 @@ var LocationRequest = /** @class */ (function (_super) {
      * @returns this LocationsRequest
      */
     LocationRequest.prototype.byCoordinates = function (x, y) {
+        /* TODO implementation */
         return this;
     };
     /**
@@ -42,8 +43,8 @@ var LocationRequest = /** @class */ (function (_super) {
      * @param {LocationType} type
      * @returns {LocationRequest}
      */
-    LocationRequest.prototype.withType = function (type) {
-        this.url = this.url + this.getParamLeader() + 'type=' + encodeURIComponent(type);
+    LocationRequest.prototype.ofType = function (type) {
+        this.url += this.getParamLeader() + 'type=' + encodeURIComponent(type);
         return this;
     };
     /**
@@ -57,7 +58,7 @@ var LocationRequest = /** @class */ (function (_super) {
         }
         for (var _a = 0, transportations_1 = transportations; _a < transportations_1.length; _a++) {
             var transportation = transportations_1[_a];
-            this.url = this.url + this.getParamLeader() + 'transportations[]=' + encodeURIComponent(transportation);
+            this.url += this.getParamLeader() + 'transportations[]=' + encodeURIComponent(transportation);
         }
         return this;
     };

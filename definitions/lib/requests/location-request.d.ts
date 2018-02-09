@@ -22,7 +22,7 @@ export declare class LocationRequest extends TransportApiRequest {
      * @param {LocationType} type
      * @returns {LocationRequest}
      */
-    withType(type: LocationType): LocationRequest;
+    ofType(type: LocationType): LocationRequest;
     /**
      * Find locations which have access to specific type(s) of transportation
      * @param {TransportationType} transportations
