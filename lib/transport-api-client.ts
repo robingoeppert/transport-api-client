@@ -2,7 +2,6 @@ import {Location} from './objects/location';
 import {Connection} from './objects/connection';
 import {Journey} from './objects/journey';
 import {LocationRequest} from './requests/location-request';
-import {TransportApiRequest} from './requests/transport-api-request';
 import {ConnectionRequest} from './requests/connection-request';
 import {StationboardRequest} from './requests/stationboard-request';
 
@@ -21,8 +20,8 @@ export class TransportApiClient {
      * Provides a custom connection request
      * @return {ConnectionRequest}
      */
-    public requestConnections(): ConnectionRequest {
-        return new ConnectionRequest();
+    public requestConnections(from: string, to: string): ConnectionRequest {
+        return new ConnectionRequest(from, to);
     }
 
     /**

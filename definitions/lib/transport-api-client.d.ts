@@ -14,7 +14,7 @@ export declare class TransportApiClient {
      * Provides a custom connection request
      * @return {ConnectionRequest}
      */
-    requestConnections(): ConnectionRequest;
+    requestConnections(from: string, to: string): ConnectionRequest;
     /**
      * Provides a custom stationboard request
      * @return {StationboardRequest}

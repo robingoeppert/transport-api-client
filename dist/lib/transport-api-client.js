@@ -17,8 +17,8 @@ var TransportApiClient = /** @class */ (function () {
      * Provides a custom connection request
      * @return {ConnectionRequest}
      */
-    TransportApiClient.prototype.requestConnections = function () {
-        return new connection_request_1.ConnectionRequest();
+    TransportApiClient.prototype.requestConnections = function (from, to) {
+        return new connection_request_1.ConnectionRequest(from, to);
     };
     /**
      * Provides a custom stationboard request
