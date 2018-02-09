@@ -20,4 +20,13 @@ export abstract class TransportApiRequest {
     protected getParamLeader(): string {
         return this.url.includes('?') ? '&' : '?';
     }
+
+    /**
+     * Date utility. Leads the number string by 0 if number is one digit
+     * @param {number} number
+     * @return {string}
+     */
+    protected numberToTwoDigitString(number: number): string {
+        return number < 10 ? '0' + number : number.toString();
+    }
 }

@@ -11,4 +11,10 @@ export declare abstract class TransportApiRequest {
      * Returns ? for the first parameter and & for all further
      */
     protected getParamLeader(): string;
+    /**
+     * Date utility. Leads the number string by 0 if number is one digit
+     * @param {number} number
+     * @return {string}
+     */
+    protected numberToTwoDigitString(number: number): string;
 }
