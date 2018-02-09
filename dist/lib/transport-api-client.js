@@ -1,12 +1,39 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var location_request_1 = require("./requests/location-request");
+var connection_request_1 = require("./requests/connection-request");
+var stationboard_request_1 = require("./requests/stationboard-request");
 var TransportApiClient = /** @class */ (function () {
     function TransportApiClient() {
     }
+    /**
+     * Provides a custom location request
+     * @return {LocationRequest}
+     */
+    TransportApiClient.prototype.requestLocations = function () {
+        return new location_request_1.LocationRequest();
+    };
+    /**
+     * Provides a custom connection request
+     * @return {ConnectionRequest}
+     */
+    TransportApiClient.prototype.requestConnections = function () {
+        return new connection_request_1.ConnectionRequest();
+    };
+    /**
+     * Provides a custom stationboard request
+     * @return {StationboardRequest}
+     */
+    TransportApiClient.prototype.requestStationboard = function () {
+        return new stationboard_request_1.StationboardRequest();
+    };
+    /**
+     * Get stations by a location name
+     * @param {string} locationName
+     * @return {Promise<Array<Location>>}
+     */
     TransportApiClient.prototype.getStationsIn = function (locationName) {
         var locationRequest = new location_request_1.LocationRequest();
-        var returnValue = [];
         return locationRequest
             .byName(locationName)
             .send();
@@ -18,10 +45,6 @@ var TransportApiClient = /** @class */ (function () {
     /* TODO implementation */
     TransportApiClient.prototype.getStationboard = function () {
         return [];
-    };
-    /* TODO implementation */
-    TransportApiClient.prototype.request = function (request) {
-        return Promise.reject('Not implemented yet');
     };
     return TransportApiClient;
 }());

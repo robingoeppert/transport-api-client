@@ -4,6 +4,7 @@ export declare abstract class TransportApiRequest {
     constructor();
     /**
      * Send built request to url
+     * @return Promise from WebRequest
      */
     abstract send(): Promise<any>;
     /**

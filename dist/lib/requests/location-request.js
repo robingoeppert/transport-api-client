@@ -64,7 +64,6 @@ var LocationRequest = /** @class */ (function (_super) {
     LocationRequest.prototype.send = function () {
         return WebRequest.json(this.url)
             .then(function (value) {
-            console.log(value);
             return value.stations;
         })
             .catch(function (reason) {

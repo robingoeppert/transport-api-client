@@ -14,7 +14,9 @@ var transport_api_request_1 = require("./transport-api-request");
 var ConnectionRequest = /** @class */ (function (_super) {
     __extends(ConnectionRequest, _super);
     function ConnectionRequest() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super.call(this) || this;
+        _this.url = _this.url + 'connections';
+        return _this;
     }
     /* TODO implementation */
     ConnectionRequest.prototype.send = function () {
