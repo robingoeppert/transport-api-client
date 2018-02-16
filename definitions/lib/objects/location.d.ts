@@ -1,8 +1,15 @@
+import { Coordinate } from './coordinate';
 export declare class Location {
-    private id;
-    private name;
-    private type;
-    private score;
-    private coordinate;
-    private distance;
+    private _id;
+    private _name;
+    private _type;
+    private _score;
+    private _coordinate;
+    private _distance;
+    readonly id: string;
+    readonly name: string;
+    readonly type: string;
+    readonly score: number;
+    readonly coordinate: Coordinate;
+    readonly distance: number;
 }
