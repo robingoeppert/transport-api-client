@@ -19,6 +19,13 @@ var TransportApiRequest = /** @class */ (function () {
     TransportApiRequest.prototype.numberToTwoDigitString = function (number) {
         return number < 10 ? '0' + number : number.toString();
     };
+    /**
+     * Get request URL
+     * @return {string} URL
+     */
+    TransportApiRequest.prototype.getUrl = function () {
+        return this.url;
+    };
     return TransportApiRequest;
 }());
 exports.TransportApiRequest = TransportApiRequest;

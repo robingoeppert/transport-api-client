@@ -17,4 +17,9 @@ export declare abstract class TransportApiRequest {
      * @return {string}
      */
     protected numberToTwoDigitString(number: number): string;
+    /**
+     * Get request URL
+     * @return {string} URL
+     */
+    getUrl(): string;
 }
