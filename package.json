@@ -8,7 +8,7 @@
     "definition": "definitions/index"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "mocha -r ts-node/register **/*.spec.ts"
   },
   "keywords": [
     "public",
@@ -37,9 +37,14 @@
     "web-request": "^1.0.7"
   },
   "devDependencies": {
+    "@types/chai": "^4.1.2",
+    "@types/mocha": "^2.2.48",
+    "chai": "*",
     "gulp": "^3.9.1",
     "gulp-typescript": "^3.2.4",
     "merge2": "^1.2.1",
+    "mocha": "*",
+    "ts-node": "^4.1.0",
     "typescript": "^2.7.1"
   }
 }
