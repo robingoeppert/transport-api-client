@@ -29,4 +29,13 @@ export abstract class TransportApiRequest {
     protected numberToTwoDigitString(number: number): string {
         return number < 10 ? '0' + number : number.toString();
     }
+
+
+    /**
+     * Get request URL
+     * @return {string} URL
+     */
+    public getUrl() {
+        return this.url;
+    }
 }
