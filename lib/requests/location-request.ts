@@ -18,7 +18,7 @@ export class LocationRequest extends TransportApiRequest {
      * @param query Location search string
      * @returns this LocationsRequest
      */
-    byName(query: string): LocationRequest {
+    public byName(query: string): LocationRequest {
         this.url += this.getParamLeader() + 'query=' + encodeURIComponent(query);
 
         return this;
@@ -30,27 +30,27 @@ export class LocationRequest extends TransportApiRequest {
      * @param y Longitude coordinate
      * @returns this LocationsRequest
      */
-    byCoordinates(x: number, y: number): LocationRequest {
+    public byCoordinates(x: number, y: number): LocationRequest {
         /* TODO implementation */
         return this;
     }
 
     /**
-     * Find locations of specific type
+     * Find locations of specific type. Works only with byName
      * @param {LocationType} type
      * @returns {LocationRequest}
      */
-    ofType(type: LocationType): LocationRequest {
+    public ofType(type: LocationType): LocationRequest {
         this.url += this.getParamLeader() + 'type=' + encodeURIComponent(type);
 
         return this;
     }
 
     /**
-     * Find locations which have access to specific type(s) of transportation
+     * Find locations which have access to specific type(s) of transportation. Works only with byCoordinates
      * @param {TransportationType} transportations
      */
-    withTransports(...transportations: TransportationType[]): LocationRequest {
+    public withTransports(...transportations: TransportationType[]): LocationRequest {
         for (let transportation of transportations) {
             this.url += this.getParamLeader() + 'transportations[]=' + encodeURIComponent(transportation);
         }

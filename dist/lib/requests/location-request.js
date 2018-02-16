@@ -39,7 +39,7 @@ var LocationRequest = /** @class */ (function (_super) {
         return this;
     };
     /**
-     * Find locations of specific type
+     * Find locations of specific type. Works only with byName
      * @param {LocationType} type
      * @returns {LocationRequest}
      */
@@ -48,7 +48,7 @@ var LocationRequest = /** @class */ (function (_super) {
         return this;
     };
     /**
-     * Find locations which have access to specific type(s) of transportation
+     * Find locations which have access to specific type(s) of transportation. Works only with byCoordinates
      * @param {TransportationType} transportations
      */
     LocationRequest.prototype.withTransports = function () {
@@ -63,6 +63,7 @@ var LocationRequest = /** @class */ (function (_super) {
         return this;
     };
     LocationRequest.prototype.send = function () {
+        console.log(this.url);
         return WebRequest.json(this.url)
             .then(function (value) {
             return value.stations;

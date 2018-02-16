@@ -64,7 +64,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
      * @param {boolean} isArrival
      * @return {ConnectionRequest}
      */
-    ConnectionRequest.prototype.withTimeIsArrival = function (isArrival) {
+    ConnectionRequest.prototype.timeIsArrival = function (isArrival) {
         this.url += '&isArrivalTime=' + (isArrival ? '1' : '0');
         return this;
     };

@@ -60,7 +60,7 @@ export class ConnectionRequest extends TransportApiRequest {
      * @param {boolean} isArrival
      * @return {ConnectionRequest}
      */
-    public withTimeIsArrival(isArrival: boolean): ConnectionRequest {
+    public timeIsArrival(isArrival: boolean): ConnectionRequest {
         this.url += '&isArrivalTime=' + (isArrival ? '1' : '0');
 
         return this;

@@ -18,13 +18,13 @@ export declare class LocationRequest extends TransportApiRequest {
      */
     byCoordinates(x: number, y: number): LocationRequest;
     /**
-     * Find locations of specific type
+     * Find locations of specific type. Works only with byName
      * @param {LocationType} type
      * @returns {LocationRequest}
      */
     ofType(type: LocationType): LocationRequest;
     /**
-     * Find locations which have access to specific type(s) of transportation
+     * Find locations which have access to specific type(s) of transportation. Works only with byCoordinates
      * @param {TransportationType} transportations
      */
     withTransports(...transportations: TransportationType[]): LocationRequest;
