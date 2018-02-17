@@ -81,8 +81,16 @@ export class ConnectionRequest extends TransportApiRequest {
         return this;
     }
 
-    /* TODO likly the same as in LocationRequest. Find an efficient solution */
-    public withTransports(...transports: TransportationType[]): ConnectionRequest {
+    /**
+     * Find connections with specific type(s) of transportation
+     * @param {TransportationType} transportations
+     * @return {ConnectionRequest}
+     */
+    public withTransports(...transportations: TransportationType[]): ConnectionRequest {
+        for (let transportation of transportations) {
+            this.url += this.getParamLeader() + 'transportations[]=' + encodeURIComponent(transportation);
+        }
+
         return this;
     }
 

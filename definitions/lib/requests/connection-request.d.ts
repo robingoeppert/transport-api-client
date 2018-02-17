@@ -35,7 +35,12 @@ export declare class ConnectionRequest extends TransportApiRequest {
      * @return {ConnectionRequest}
      */
     timeIsArrival(isArrival: boolean): ConnectionRequest;
-    withTransports(...transports: TransportationType[]): ConnectionRequest;
+    /**
+     * Find connections with specific type(s) of transportation
+     * @param {TransportationType} transportations
+     * @return {ConnectionRequest}
+     */
+    withTransports(...transportations: TransportationType[]): ConnectionRequest;
     /**
      * Limit the responded connections
      * @param {number} limit

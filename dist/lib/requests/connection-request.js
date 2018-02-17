@@ -79,11 +79,19 @@ var ConnectionRequest = /** @class */ (function (_super) {
         this.url += '&isArrivalTime=' + (isArrival ? '1' : '0');
         return this;
     };
-    /* TODO likly the same as in LocationRequest. Find an efficient solution */
+    /**
+     * Find connections with specific type(s) of transportation
+     * @param {TransportationType} transportations
+     * @return {ConnectionRequest}
+     */
     ConnectionRequest.prototype.withTransports = function () {
-        var transports = [];
+        var transportations = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            transports[_i] = arguments[_i];
+            transportations[_i] = arguments[_i];
+        }
+        for (var _a = 0, transportations_1 = transportations; _a < transportations_1.length; _a++) {
+            var transportation = transportations_1[_a];
+            this.url += this.getParamLeader() + 'transportations[]=' + encodeURIComponent(transportation);
         }
         return this;
     };
