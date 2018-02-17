@@ -7,33 +7,37 @@ import * as WebRequest from 'web-request';
 
 export class LocationRequest extends TransportApiRequest {
 
-    constructor() {
+    private constructor() {
         super();
         this.url += 'locations';
     }
 
 
     /**
-     * Find locations by name
+     * Creates new LocationRequest finding locations by name
      * @param query Location search string
-     * @returns this LocationsRequest
+     * @returns new LocationsRequest
      */
-    public byName(query: string): LocationRequest {
-        this.url += this.getParamLeader() + 'query=' + encodeURIComponent(query);
+    public static byName(query: string): LocationRequest {
+        const newRequest: LocationRequest = new LocationRequest();
+        newRequest.url += newRequest.getParamLeader() + 'query=' + encodeURIComponent(query);
 
-        return this;
+        return newRequest;
     }
 
     /**
-     * Find locations by coordinates
+     * Creates new LocationRequest finding locations by coordinates
      * @param x Latitude coordinate
      * @param y Longitude coordinate
-     * @returns this LocationsRequest
+     * @returns new LocationsRequest
      */
-    public byCoordinates(x: number, y: number): LocationRequest {
-        /* TODO implementation */
-        return this;
+    public static byCoordinates(x: number, y: number): LocationRequest {
+        const newRequest: LocationRequest = new LocationRequest();
+        newRequest.url += newRequest.getParamLeader() + 'x=' + x + '&y=' + y;
+
+        return newRequest;
     }
+
 
     /**
      * Find locations of specific type. Works only with byName

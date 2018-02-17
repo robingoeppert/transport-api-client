@@ -20,23 +20,25 @@ var LocationRequest = /** @class */ (function (_super) {
         return _this;
     }
     /**
-     * Find locations by name
+     * Creates new LocationRequest finding locations by name
      * @param query Location search string
-     * @returns this LocationsRequest
+     * @returns new LocationsRequest
      */
-    LocationRequest.prototype.byName = function (query) {
-        this.url += this.getParamLeader() + 'query=' + encodeURIComponent(query);
-        return this;
+    LocationRequest.byName = function (query) {
+        var newRequest = new LocationRequest();
+        newRequest.url += newRequest.getParamLeader() + 'query=' + encodeURIComponent(query);
+        return newRequest;
     };
     /**
-     * Find locations by coordinates
+     * Creates new LocationRequest finding locations by coordinates
      * @param x Latitude coordinate
      * @param y Longitude coordinate
-     * @returns this LocationsRequest
+     * @returns new LocationsRequest
      */
-    LocationRequest.prototype.byCoordinates = function (x, y) {
-        /* TODO implementation */
-        return this;
+    LocationRequest.byCoordinates = function (x, y) {
+        var newRequest = new LocationRequest();
+        newRequest.url += newRequest.getParamLeader() + 'x=' + x + '&y=' + y;
+        return newRequest;
     };
     /**
      * Find locations of specific type. Works only with byName

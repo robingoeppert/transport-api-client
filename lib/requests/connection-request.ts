@@ -4,11 +4,26 @@ import {TransportationType} from '../enums/transportation-type';
 import * as WebRequest from 'web-request';
 import {AccessibilityType} from '../enums/accessibility-type';
 
+
 export class ConnectionRequest extends TransportApiRequest {
 
-    constructor(from: string, to: string) {
+    private constructor() {
         super();
-        this.url += 'connections?from=' + encodeURIComponent(from) + '&to=' + encodeURIComponent(to);
+        this.url += 'connections';
+    }
+
+
+    /**
+     *
+     * @param {string} from location name
+     * @param {string} to location name
+     * @return {ConnectionRequest} new request
+     */
+    public static byFromTo(from: string, to: string): ConnectionRequest {
+        const newRequest: ConnectionRequest = new ConnectionRequest();
+        newRequest.url += '?from=' + encodeURIComponent(from) + '&to=' + encodeURIComponent(to);
+
+        return newRequest;
     }
 
 

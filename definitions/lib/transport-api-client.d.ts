@@ -6,12 +6,22 @@ import { ConnectionRequest } from './requests/connection-request';
 import { StationboardRequest } from './requests/stationboard-request';
 export declare class TransportApiClient {
     /**
-     * Provides a custom location request
+     * Provides a custom location request by location name
+     * @param {string} name
      * @return {LocationRequest}
      */
-    requestLocations(): LocationRequest;
+    requestLocationsByName(name: string): LocationRequest;
+    /**
+     * Provides a custom location request by coordinates
+     * @param {number} x
+     * @param {number} y
+     * @return {LocationRequest}
+     */
+    requestLocationsByCoordinates(x: number, y: number): LocationRequest;
     /**
      * Provides a custom connection request
+     * @param from depart location
+     * @param to arrive location
      * @return {ConnectionRequest}
      */
     requestConnections(from: string, to: string): ConnectionRequest;

@@ -14,11 +14,22 @@ var transport_api_request_1 = require("./transport-api-request");
 var WebRequest = require("web-request");
 var ConnectionRequest = /** @class */ (function (_super) {
     __extends(ConnectionRequest, _super);
-    function ConnectionRequest(from, to) {
+    function ConnectionRequest() {
         var _this = _super.call(this) || this;
-        _this.url += 'connections?from=' + encodeURIComponent(from) + '&to=' + encodeURIComponent(to);
+        _this.url += 'connections';
         return _this;
     }
+    /**
+     *
+     * @param {string} from location name
+     * @param {string} to location name
+     * @return {ConnectionRequest} new request
+     */
+    ConnectionRequest.byFromTo = function (from, to) {
+        var newRequest = new ConnectionRequest();
+        newRequest.url += '?from=' + encodeURIComponent(from) + '&to=' + encodeURIComponent(to);
+        return newRequest;
+    };
     /**
      * Find connections via specific location
      * @param {string} viaLocations

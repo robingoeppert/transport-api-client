@@ -3,7 +3,14 @@ import { Connection } from '../objects/connection';
 import { TransportationType } from '../enums/transportation-type';
 import { AccessibilityType } from '../enums/accessibility-type';
 export declare class ConnectionRequest extends TransportApiRequest {
-    constructor(from: string, to: string);
+    private constructor();
+    /**
+     *
+     * @param {string} from location name
+     * @param {string} to location name
+     * @return {ConnectionRequest} new request
+     */
+    static byFromTo(from: string, to: string): ConnectionRequest;
     /**
      * Find connections via specific location
      * @param {string} viaLocations

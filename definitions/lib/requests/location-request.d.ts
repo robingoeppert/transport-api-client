@@ -3,20 +3,20 @@ import { Location } from '../objects/location';
 import { LocationType } from '../enums/location-type';
 import { TransportationType } from '../enums/transportation-type';
 export declare class LocationRequest extends TransportApiRequest {
-    constructor();
+    private constructor();
     /**
-     * Find locations by name
+     * Creates new LocationRequest finding locations by name
      * @param query Location search string
-     * @returns this LocationsRequest
+     * @returns new LocationsRequest
      */
-    byName(query: string): LocationRequest;
+    static byName(query: string): LocationRequest;
     /**
-     * Find locations by coordinates
+     * Creates new LocationRequest finding locations by coordinates
      * @param x Latitude coordinate
      * @param y Longitude coordinate
-     * @returns this LocationsRequest
+     * @returns new LocationsRequest
      */
-    byCoordinates(x: number, y: number): LocationRequest;
+    static byCoordinates(x: number, y: number): LocationRequest;
     /**
      * Find locations of specific type. Works only with byName
      * @param {LocationType} type

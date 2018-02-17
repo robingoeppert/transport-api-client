@@ -7,18 +7,30 @@ var TransportApiClient = /** @class */ (function () {
     function TransportApiClient() {
     }
     /**
-     * Provides a custom location request
+     * Provides a custom location request by location name
+     * @param {string} name
      * @return {LocationRequest}
      */
-    TransportApiClient.prototype.requestLocations = function () {
-        return new location_request_1.LocationRequest();
+    TransportApiClient.prototype.requestLocationsByName = function (name) {
+        return location_request_1.LocationRequest.byName(name);
+    };
+    /**
+     * Provides a custom location request by coordinates
+     * @param {number} x
+     * @param {number} y
+     * @return {LocationRequest}
+     */
+    TransportApiClient.prototype.requestLocationsByCoordinates = function (x, y) {
+        return location_request_1.LocationRequest.byCoordinates(x, y);
     };
     /**
      * Provides a custom connection request
+     * @param from depart location
+     * @param to arrive location
      * @return {ConnectionRequest}
      */
     TransportApiClient.prototype.requestConnections = function (from, to) {
-        return new connection_request_1.ConnectionRequest(from, to);
+        return connection_request_1.ConnectionRequest.byFromTo(from, to);
     };
     /**
      * Provides a custom stationboard request
@@ -33,10 +45,8 @@ var TransportApiClient = /** @class */ (function () {
      * @return {Promise<Array<Location>>}
      */
     TransportApiClient.prototype.getStationsIn = function (locationName) {
-        var locationRequest = new location_request_1.LocationRequest();
-        return locationRequest
-            .byName(locationName)
-            .send();
+        var locationRequest = location_request_1.LocationRequest.byName(locationName);
+        return locationRequest.send();
     };
     /* TODO implementation */
     TransportApiClient.prototype.getConnections = function () {

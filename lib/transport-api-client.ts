@@ -9,19 +9,32 @@ import {StationboardRequest} from './requests/stationboard-request';
 export class TransportApiClient {
 
     /**
-     * Provides a custom location request
+     * Provides a custom location request by location name
+     * @param {string} name
      * @return {LocationRequest}
      */
-    public requestLocations(): LocationRequest {
-        return new LocationRequest();
+    public requestLocationsByName(name: string): LocationRequest {
+        return LocationRequest.byName(name);
+    }
+
+    /**
+     * Provides a custom location request by coordinates
+     * @param {number} x
+     * @param {number} y
+     * @return {LocationRequest}
+     */
+    public requestLocationsByCoordinates(x: number, y: number): LocationRequest {
+        return LocationRequest.byCoordinates(x, y);
     }
 
     /**
      * Provides a custom connection request
+     * @param from depart location
+     * @param to arrive location
      * @return {ConnectionRequest}
      */
     public requestConnections(from: string, to: string): ConnectionRequest {
-        return new ConnectionRequest(from, to);
+        return ConnectionRequest.byFromTo(from, to);
     }
 
     /**
@@ -38,11 +51,9 @@ export class TransportApiClient {
      * @return {Promise<Array<Location>>}
      */
     public getStationsIn(locationName: string): Promise<Array<Location>> {
-        let locationRequest = new LocationRequest();
+        let locationRequest = LocationRequest.byName(locationName);
 
-        return locationRequest
-            .byName(locationName)
-            .send();
+        return locationRequest.send();
     }
 
     /* TODO implementation */
