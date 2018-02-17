@@ -1,12 +1,18 @@
 export declare abstract class TransportApiRequest {
     protected readonly BASE_URL: string;
     protected url: string;
-    constructor();
+    constructor(api: string);
     /**
      * Send built request to url
      * @return Promise from WebRequest
      */
     abstract send(): Promise<any>;
+    /**
+     * Add a GET param to URL. Key and value get url-encoded
+     * @param {string} key
+     * @param {string} value
+     */
+    protected addParam(key: string, value: string): this;
     /**
      * Returns ? for the first parameter and & for all further
      */

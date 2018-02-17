@@ -15,9 +15,7 @@ var WebRequest = require("web-request");
 var ConnectionRequest = /** @class */ (function (_super) {
     __extends(ConnectionRequest, _super);
     function ConnectionRequest() {
-        var _this = _super.call(this) || this;
-        _this.url += 'connections';
-        return _this;
+        return _super.call(this, 'connections') || this;
     }
     /**
      *
@@ -26,9 +24,9 @@ var ConnectionRequest = /** @class */ (function (_super) {
      * @return {ConnectionRequest} new request
      */
     ConnectionRequest.byFromTo = function (from, to) {
-        var newRequest = new ConnectionRequest();
-        newRequest.url += '?from=' + encodeURIComponent(from) + '&to=' + encodeURIComponent(to);
-        return newRequest;
+        return new ConnectionRequest()
+            .addParam('from', from)
+            .addParam('to', to);
     };
     /**
      * Find connections via specific location
@@ -42,7 +40,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
         }
         for (var _a = 0, viaLocations_1 = viaLocations; _a < viaLocations_1.length; _a++) {
             var viaLocation = viaLocations_1[_a];
-            this.url += '&via[]=' + encodeURIComponent(viaLocation);
+            this.addParam('via[]', viaLocation);
         }
         return this;
     };
@@ -56,8 +54,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
         var day = this.numberToTwoDigitString(date.getDate());
         // Results in format yyyy-mm-dd
         var dateString = date.getFullYear() + '-' + month + '-' + day;
-        this.url += '&date=' + encodeURIComponent(dateString);
-        return this;
+        return this.addParam('date', dateString);
     };
     /**
      * Find connections for a specific time (day date ignored)
@@ -67,8 +64,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
     ConnectionRequest.prototype.atTime = function (time) {
         var hours = this.numberToTwoDigitString(time.getHours());
         var minutes = this.numberToTwoDigitString(time.getMinutes());
-        this.url += '&time=' + hours + ':' + minutes;
-        return this;
+        return this.addParam('time', hours + ':' + minutes);
     };
     /**
      * Specifies if requested date and time are on arrival (or departure). Default is false => departure
@@ -76,8 +72,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
      * @return {ConnectionRequest}
      */
     ConnectionRequest.prototype.timeIsArrival = function (isArrival) {
-        this.url += '&isArrivalTime=' + (isArrival ? '1' : '0');
-        return this;
+        return this.addParam('isArrivalTime', (isArrival ? '1' : '0'));
     };
     /**
      * Find connections with specific type(s) of transportation
@@ -91,7 +86,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
         }
         for (var _a = 0, transportations_1 = transportations; _a < transportations_1.length; _a++) {
             var transportation = transportations_1[_a];
-            this.url += this.getParamLeader() + 'transportations[]=' + encodeURIComponent(transportation);
+            this.addParam('transportations[]', transportation);
         }
         return this;
     };
@@ -101,8 +96,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
      * @return {ConnectionRequest}
      */
     ConnectionRequest.prototype.limitResponse = function (limit) {
-        this.url += '&limit=' + limit;
-        return this;
+        return this.addParam('limit', String(limit));
     };
     /**
      * Pagination of response. Page number is zero-based (param 0 is first page)
@@ -110,8 +104,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
      * @return {ConnectionRequest}
      */
     ConnectionRequest.prototype.pageOfResponse = function (page) {
-        this.url += '&page=' + page;
-        return this;
+        return this.addParam('page', String(page));
     };
     /**
      * If set to true, only direct connections get requested. Default is false
@@ -119,8 +112,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
      * @return {ConnectionRequest}
      */
     ConnectionRequest.prototype.onlyDirect = function (isDirectConnection) {
-        this.url += '&direct=' + (isDirectConnection ? '1' : '0');
-        return this;
+        return this.addParam('direct', (isDirectConnection ? '1' : '0'));
     };
     /**
      * If set to true, only night trains with beds get listed
@@ -128,8 +120,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
      * @return {ConnectionRequest}
      */
     ConnectionRequest.prototype.hasBeds = function (hasBeds) {
-        this.url += '&sleeper=' + (hasBeds ? '1' : '0');
-        return this;
+        return this.addParam('sleeper', (hasBeds ? '1' : '0'));
     };
     /**
      * If set to true, only night trains with couchettes get listed
@@ -137,8 +128,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
      * @return {ConnectionRequest}
      */
     ConnectionRequest.prototype.hasCouchettes = function (hasCouchettes) {
-        this.url += '&couchette=' + (hasCouchettes ? '1' : '0');
-        return this;
+        return this.addParam('couchette', (hasCouchettes ? '1' : '0'));
     };
     /**
      * If set to true, only trains allowing the transport of bicycles get listed
@@ -146,8 +136,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
      * @return {ConnectionRequest}
      */
     ConnectionRequest.prototype.bikesAllowed = function (allowed) {
-        this.url += '&bike=' + (allowed ? '1' : '0');
-        return this;
+        return this.addParam('bike', (allowed ? '1' : '0'));
     };
     /**
      * Restrict response by accessibility of vehicle
@@ -155,8 +144,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
      * @return {ConnectionRequest}
      */
     ConnectionRequest.prototype.accessibleBy = function (accessibility) {
-        this.url += '&accessibility=' + accessibility;
-        return this;
+        return this.addParam('accessibility', accessibility);
     };
     ConnectionRequest.prototype.send = function () {
         return WebRequest.json(this.url)

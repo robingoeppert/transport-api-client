@@ -3,8 +3,8 @@ export abstract class TransportApiRequest {
     protected url: string;
 
 
-    constructor() {
-        this.url = this.BASE_URL;
+    constructor(api: string) {
+        this.url = this.BASE_URL + api;
     }
 
 
@@ -13,6 +13,18 @@ export abstract class TransportApiRequest {
      * @return Promise from WebRequest
      */
     abstract send(): Promise<any>;
+
+
+    /**
+     * Add a GET param to URL. Key and value get url-encoded
+     * @param {string} key
+     * @param {string} value
+     */
+    protected addParam(key: string, value: string) {
+        this.url += this.getParamLeader() + key + "=" + encodeURIComponent(value);
+
+        return this;
+    }
 
     /**
      * Returns ? for the first parameter and & for all further

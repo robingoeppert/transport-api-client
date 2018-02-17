@@ -26,10 +26,17 @@ export declare class TransportApiClient {
      */
     requestConnections(from: string, to: string): ConnectionRequest;
     /**
-     * Provides a custom stationboard request
+     * Provides a custom stationboard request based on station name
+     * @param {string} station for stationboard
      * @return {StationboardRequest}
      */
-    requestStationboard(): StationboardRequest;
+    requestStationboardByName(station: string): StationboardRequest;
+    /**
+     * Provides a custom stationboard request based on station ID
+     * @param {string} station
+     * @return {StationboardRequest}
+     */
+    requestStationboardById(station: string): StationboardRequest;
     /**
      * Get stations by a location name
      * @param {string} locationName

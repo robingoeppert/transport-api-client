@@ -8,8 +8,7 @@ import {AccessibilityType} from '../enums/accessibility-type';
 export class ConnectionRequest extends TransportApiRequest {
 
     private constructor() {
-        super();
-        this.url += 'connections';
+        super('connections');
     }
 
 
@@ -20,10 +19,9 @@ export class ConnectionRequest extends TransportApiRequest {
      * @return {ConnectionRequest} new request
      */
     public static byFromTo(from: string, to: string): ConnectionRequest {
-        const newRequest: ConnectionRequest = new ConnectionRequest();
-        newRequest.url += '?from=' + encodeURIComponent(from) + '&to=' + encodeURIComponent(to);
-
-        return newRequest;
+        return new ConnectionRequest()
+            .addParam('from', from)
+            .addParam('to', to);
     }
 
 
@@ -34,7 +32,7 @@ export class ConnectionRequest extends TransportApiRequest {
      */
     public via(...viaLocations: string[]): ConnectionRequest {
         for (let viaLocation of viaLocations) {
-            this.url += '&via[]=' + encodeURIComponent(viaLocation);
+            this.addParam('via[]', viaLocation);
         }
 
         return this;
@@ -46,14 +44,13 @@ export class ConnectionRequest extends TransportApiRequest {
      * @return {ConnectionRequest}
      */
     public onDate(date: Date): ConnectionRequest {
-        let month: string = this.numberToTwoDigitString(date.getMonth());
-        let day: string = this.numberToTwoDigitString(date.getDate());
+        const month: string = this.numberToTwoDigitString(date.getMonth());
+        const day: string = this.numberToTwoDigitString(date.getDate());
 
         // Results in format yyyy-mm-dd
-        let dateString: string = date.getFullYear() + '-' + month + '-' + day;
-        this.url += '&date=' + encodeURIComponent(dateString);
+        const dateString: string = date.getFullYear() + '-' + month + '-' + day;
 
-        return this;
+        return this.addParam('date', dateString);
     }
 
     /**
@@ -62,12 +59,10 @@ export class ConnectionRequest extends TransportApiRequest {
      * @return {ConnectionRequest}
      */
     public atTime(time: Date): ConnectionRequest {
-        let hours: string = this.numberToTwoDigitString(time.getHours());
-        let minutes: string = this.numberToTwoDigitString(time.getMinutes());
+        const hours: string = this.numberToTwoDigitString(time.getHours());
+        const minutes: string = this.numberToTwoDigitString(time.getMinutes());
 
-        this.url += '&time=' + hours + ':' + minutes;
-
-        return this;
+        return this.addParam('time', hours + ':' + minutes);
     }
 
     /**
@@ -76,9 +71,7 @@ export class ConnectionRequest extends TransportApiRequest {
      * @return {ConnectionRequest}
      */
     public timeIsArrival(isArrival: boolean): ConnectionRequest {
-        this.url += '&isArrivalTime=' + (isArrival ? '1' : '0');
-
-        return this;
+        return this.addParam('isArrivalTime', (isArrival ? '1' : '0'));
     }
 
     /**
@@ -88,7 +81,7 @@ export class ConnectionRequest extends TransportApiRequest {
      */
     public withTransports(...transportations: TransportationType[]): ConnectionRequest {
         for (let transportation of transportations) {
-            this.url += this.getParamLeader() + 'transportations[]=' + encodeURIComponent(transportation);
+            this.addParam('transportations[]', transportation);
         }
 
         return this;
@@ -100,9 +93,7 @@ export class ConnectionRequest extends TransportApiRequest {
      * @return {ConnectionRequest}
      */
     public limitResponse(limit: number): ConnectionRequest {
-        this.url += '&limit=' + limit;
-
-        return this;
+        return this.addParam('limit', String(limit));
     }
 
     /**
@@ -111,9 +102,7 @@ export class ConnectionRequest extends TransportApiRequest {
      * @return {ConnectionRequest}
      */
     public pageOfResponse(page: number): ConnectionRequest {
-        this.url += '&page=' + page;
-
-        return this;
+        return this.addParam('page', String(page));
     }
 
     /**
@@ -122,9 +111,7 @@ export class ConnectionRequest extends TransportApiRequest {
      * @return {ConnectionRequest}
      */
     public onlyDirect(isDirectConnection: boolean): ConnectionRequest {
-        this.url += '&direct=' + (isDirectConnection ? '1' : '0');
-
-        return this;
+        return this.addParam('direct', (isDirectConnection ? '1' : '0'));
     }
 
     /**
@@ -133,9 +120,7 @@ export class ConnectionRequest extends TransportApiRequest {
      * @return {ConnectionRequest}
      */
     public hasBeds(hasBeds: boolean): ConnectionRequest {
-        this.url += '&sleeper=' + (hasBeds? '1' : '0');
-
-        return this;
+        return this.addParam('sleeper', (hasBeds? '1' : '0'));
     }
 
     /**
@@ -144,9 +129,7 @@ export class ConnectionRequest extends TransportApiRequest {
      * @return {ConnectionRequest}
      */
     public hasCouchettes(hasCouchettes: boolean): ConnectionRequest {
-        this.url += '&couchette=' + (hasCouchettes ? '1' : '0');
-
-        return this;
+        return this.addParam('couchette', (hasCouchettes ? '1' : '0'));
     }
 
     /**
@@ -155,9 +138,7 @@ export class ConnectionRequest extends TransportApiRequest {
      * @return {ConnectionRequest}
      */
     public bikesAllowed(allowed: boolean): ConnectionRequest {
-        this.url += '&bike=' + (allowed ? '1': '0');
-
-        return this;
+        return this.addParam('bike', (allowed ? '1': '0'));
     }
 
     /**
@@ -166,9 +147,7 @@ export class ConnectionRequest extends TransportApiRequest {
      * @return {ConnectionRequest}
      */
     public accessibleBy(accessibility: AccessibilityType): ConnectionRequest {
-        this.url += '&accessibility=' + accessibility;
-
-        return this;
+        return this.addParam('accessibility', accessibility);
     }
 
 

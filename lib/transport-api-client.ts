@@ -38,11 +38,21 @@ export class TransportApiClient {
     }
 
     /**
-     * Provides a custom stationboard request
+     * Provides a custom stationboard request based on station name
+     * @param {string} station for stationboard
      * @return {StationboardRequest}
      */
-    public requestStationboard(): StationboardRequest {
-        return new StationboardRequest();
+    public requestStationboardByName(station: string): StationboardRequest {
+        return StationboardRequest.byStationName(station);
+    }
+
+    /**
+     * Provides a custom stationboard request based on station ID
+     * @param {string} station
+     * @return {StationboardRequest}
+     */
+    public requestStationboardById(station: string): StationboardRequest {
+        return StationboardRequest.byStationId(station);
     }
 
     /**

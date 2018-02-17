@@ -15,9 +15,7 @@ var WebRequest = require("web-request");
 var LocationRequest = /** @class */ (function (_super) {
     __extends(LocationRequest, _super);
     function LocationRequest() {
-        var _this = _super.call(this) || this;
-        _this.url += 'locations';
-        return _this;
+        return _super.call(this, 'locations') || this;
     }
     /**
      * Creates new LocationRequest finding locations by name
@@ -25,9 +23,8 @@ var LocationRequest = /** @class */ (function (_super) {
      * @returns new LocationsRequest
      */
     LocationRequest.byName = function (query) {
-        var newRequest = new LocationRequest();
-        newRequest.url += newRequest.getParamLeader() + 'query=' + encodeURIComponent(query);
-        return newRequest;
+        return new LocationRequest()
+            .addParam('query', query);
     };
     /**
      * Creates new LocationRequest finding locations by coordinates
@@ -36,9 +33,9 @@ var LocationRequest = /** @class */ (function (_super) {
      * @returns new LocationsRequest
      */
     LocationRequest.byCoordinates = function (x, y) {
-        var newRequest = new LocationRequest();
-        newRequest.url += newRequest.getParamLeader() + 'x=' + x + '&y=' + y;
-        return newRequest;
+        return new LocationRequest()
+            .addParam('x', String(x))
+            .addParam('y', String(y));
     };
     /**
      * Find locations of specific type. Works only with byName
@@ -46,8 +43,7 @@ var LocationRequest = /** @class */ (function (_super) {
      * @returns {LocationRequest}
      */
     LocationRequest.prototype.ofType = function (type) {
-        this.url += this.getParamLeader() + 'type=' + encodeURIComponent(type);
-        return this;
+        return this.addParam('type', type);
     };
     /**
      * Find locations which have access to specific type(s) of transportation. Works only with byCoordinates
@@ -60,7 +56,7 @@ var LocationRequest = /** @class */ (function (_super) {
         }
         for (var _a = 0, transportations_1 = transportations; _a < transportations_1.length; _a++) {
             var transportation = transportations_1[_a];
-            this.url += this.getParamLeader() + 'transportations[]=' + encodeURIComponent(transportation);
+            this.addParam('transportations[]', transportation);
         }
         return this;
     };

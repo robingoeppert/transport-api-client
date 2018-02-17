@@ -33,11 +33,20 @@ var TransportApiClient = /** @class */ (function () {
         return connection_request_1.ConnectionRequest.byFromTo(from, to);
     };
     /**
-     * Provides a custom stationboard request
+     * Provides a custom stationboard request based on station name
+     * @param {string} station for stationboard
      * @return {StationboardRequest}
      */
-    TransportApiClient.prototype.requestStationboard = function () {
-        return new stationboard_request_1.StationboardRequest();
+    TransportApiClient.prototype.requestStationboardByName = function (station) {
+        return stationboard_request_1.StationboardRequest.byStationName(station);
+    };
+    /**
+     * Provides a custom stationboard request based on station ID
+     * @param {string} station
+     * @return {StationboardRequest}
+     */
+    TransportApiClient.prototype.requestStationboardById = function (station) {
+        return stationboard_request_1.StationboardRequest.byStationId(station);
     };
     /**
      * Get stations by a location name

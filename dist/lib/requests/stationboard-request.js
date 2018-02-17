@@ -14,8 +14,19 @@ var transport_api_request_1 = require("./transport-api-request");
 var StationboardRequest = /** @class */ (function (_super) {
     __extends(StationboardRequest, _super);
     function StationboardRequest() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        return _super.call(this, 'stationboard') || this;
     }
+    StationboardRequest.byStationName = function (name) {
+        return new StationboardRequest()
+            .addParam('station', name);
+    };
+    StationboardRequest.byStationId = function (id) {
+        return new StationboardRequest()
+            .addParam('id', id);
+    };
+    /*
+    TODO implement param methods and SEND
+     */
     StationboardRequest.prototype.send = function () {
         return new Promise(null);
     };
