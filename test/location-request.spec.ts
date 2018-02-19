@@ -3,7 +3,6 @@ import {expect} from 'chai';
 import {LocationRequest} from '../lib/requests/location-request';
 import {LocationType} from '../lib/enums/location-type';
 import {TransportationType} from '../lib/enums/transportation-type';
-import {Location} from '../lib/objects/location';
 
 
 describe('LocationRequest', () => {
