@@ -50,7 +50,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
      * @return {ConnectionRequest}
      */
     ConnectionRequest.prototype.onDate = function (date) {
-        var month = this.numberToTwoDigitString(date.getMonth());
+        var month = this.numberToTwoDigitString(date.getMonth() + 1);
         var day = this.numberToTwoDigitString(date.getDate());
         // Results in format yyyy-mm-dd
         var dateString = date.getFullYear() + '-' + month + '-' + day;
@@ -71,7 +71,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
      * @param {boolean} isArrival
      * @return {ConnectionRequest}
      */
-    ConnectionRequest.prototype.timeIsArrival = function (isArrival) {
+    ConnectionRequest.prototype.dateTimeIsArrival = function (isArrival) {
         return this.addParam('isArrivalTime', (isArrival ? '1' : '0'));
     };
     /**

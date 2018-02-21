@@ -44,7 +44,7 @@ export class ConnectionRequest extends TransportApiRequest {
      * @return {ConnectionRequest}
      */
     public onDate(date: Date): ConnectionRequest {
-        const month: string = this.numberToTwoDigitString(date.getMonth());
+        const month: string = this.numberToTwoDigitString(date.getMonth() + 1);
         const day: string = this.numberToTwoDigitString(date.getDate());
 
         // Results in format yyyy-mm-dd
@@ -70,7 +70,7 @@ export class ConnectionRequest extends TransportApiRequest {
      * @param {boolean} isArrival
      * @return {ConnectionRequest}
      */
-    public timeIsArrival(isArrival: boolean): ConnectionRequest {
+    public dateTimeIsArrival(isArrival: boolean): ConnectionRequest {
         return this.addParam('isArrivalTime', (isArrival ? '1' : '0'));
     }
 

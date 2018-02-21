@@ -34,7 +34,7 @@ export declare class ConnectionRequest extends TransportApiRequest {
      * @param {boolean} isArrival
      * @return {ConnectionRequest}
      */
-    timeIsArrival(isArrival: boolean): ConnectionRequest;
+    dateTimeIsArrival(isArrival: boolean): ConnectionRequest;
     /**
      * Find connections with specific type(s) of transportation
      * @param {TransportationType} transportations
