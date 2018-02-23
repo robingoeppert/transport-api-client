@@ -17,9 +17,23 @@ var Checkpoint = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Checkpoint.prototype, "arrivalTimestamp", {
+        get: function () {
+            return this._arrivalTimestamp;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(Checkpoint.prototype, "departure", {
         get: function () {
             return this._departure;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Checkpoint.prototype, "departureTimestamp", {
+        get: function () {
+            return this._departureTimestamp;
         },
         enumerable: true,
         configurable: true
