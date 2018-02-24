@@ -72,13 +72,9 @@ var StationboardRequest = /** @class */ (function (_super) {
         return this.addParam('type', type);
     };
     StationboardRequest.prototype.send = function () {
-        //return new Promise<Array<Journey>>(null);
         return WebRequest.json(this.url)
             .then(function (value) {
             return value.stationboard;
-        })
-            .catch(function (reason) {
-            return Promise.reject(reason);
         });
     };
     return StationboardRequest;

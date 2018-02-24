@@ -64,9 +64,6 @@ var LocationRequest = /** @class */ (function (_super) {
         return WebRequest.json(this.url)
             .then(function (value) {
             return value.stations;
-        })
-            .catch(function (reason) {
-            return Promise.reject(reason);
         });
     };
     return LocationRequest;

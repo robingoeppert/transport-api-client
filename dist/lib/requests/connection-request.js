@@ -150,9 +150,6 @@ var ConnectionRequest = /** @class */ (function (_super) {
         return WebRequest.json(this.url)
             .then(function (value) {
             return value.connections;
-        })
-            .catch(function (reason) {
-            return Promise.reject(reason);
         });
     };
     return ConnectionRequest;

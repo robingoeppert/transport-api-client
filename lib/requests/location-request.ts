@@ -61,9 +61,6 @@ export class LocationRequest extends TransportApiRequest {
         return WebRequest.json<LocationResponse>(this.url)
             .then(value => {
                 return value.stations;
-            })
-            .catch(reason => {
-                return Promise.reject(reason);
             });
     }
 }

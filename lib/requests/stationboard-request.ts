@@ -74,13 +74,9 @@ export class StationboardRequest extends TransportApiRequest {
 
 
     send(): Promise<Array<StationboardItem>> {
-        //return new Promise<Array<Journey>>(null);
         return WebRequest.json<StationboardResponse>(this.url)
             .then(value => {
                 return value.stationboard;
-            })
-            .catch(reason => {
-                return Promise.reject(reason);
             });
     }
 }

@@ -155,9 +155,6 @@ export class ConnectionRequest extends TransportApiRequest {
         return WebRequest.json<ConnectionResponse>(this.url)
             .then(value => {
                 return value.connections;
-            })
-            .catch(reason => {
-                return Promise.reject(reason);
             });
     }
 }
