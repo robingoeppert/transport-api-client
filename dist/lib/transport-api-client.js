@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var location_request_1 = require("./requests/location-request");
 var connection_request_1 = require("./requests/connection-request");
 var stationboard_request_1 = require("./requests/stationboard-request");
+var moment = require("moment");
 var TransportApiClient = /** @class */ (function () {
     function TransportApiClient() {
     }
@@ -57,13 +58,25 @@ var TransportApiClient = /** @class */ (function () {
         var locationRequest = location_request_1.LocationRequest.byName(locationName);
         return locationRequest.send();
     };
-    /* TODO implementation */
-    TransportApiClient.prototype.getConnections = function () {
-        return [];
-    };
-    /* TODO implementation */
-    TransportApiClient.prototype.getStationboard = function () {
-        return [];
+    /**
+     * Get the departures of a station for the next hour, but at max. 10 departures
+     * @param {string} stationName
+     * @return {Array<StationboardItem>}
+     */
+    TransportApiClient.prototype.getNextDepartures = function (stationName) {
+        var maxDate = moment().add(1, 'h');
+        var request = stationboard_request_1.StationboardRequest.byStationName(stationName).limitResponse(10);
+        return request.send()
+            .then(function (response) {
+            var stationboard = [];
+            for (var _i = 0, response_1 = response; _i < response_1.length; _i++) {
+                var item = response_1[_i];
+                if (moment.unix(item.stop.departureTimestamp).isBefore(maxDate)) {
+                    stationboard.push(item);
+                }
+            }
+            return stationboard;
+        });
     };
     return TransportApiClient;
 }());

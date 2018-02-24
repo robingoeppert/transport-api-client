@@ -1,9 +1,10 @@
 import {Location} from './objects/location';
-import {Connection} from './objects/connection';
-import {Journey} from './objects/journey';
 import {LocationRequest} from './requests/location-request';
 import {ConnectionRequest} from './requests/connection-request';
 import {StationboardRequest} from './requests/stationboard-request';
+import {StationboardItem} from './objects/stationboard-item';
+import * as moment from 'moment';
+import {Moment} from 'moment';
 
 
 export class TransportApiClient {
@@ -66,13 +67,26 @@ export class TransportApiClient {
         return locationRequest.send();
     }
 
-    /* TODO implementation */
-    public getConnections(): Array<Connection> {
-        return [];
-    }
+    /**
+     * Get the departures of a station for the next hour, but at max. 10 departures
+     * @param {string} stationName
+     * @return {Array<StationboardItem>}
+     */
+    public getNextDepartures(stationName: string): Promise<Array<StationboardItem>> {
+        const maxDate: Moment = moment().add(1, 'h');
+        const request = StationboardRequest.byStationName(stationName).limitResponse(10);
 
-    /* TODO implementation */
-    public getStationboard(): Array<Journey> {
-        return [];
+        return request.send()
+            .then(response => {
+                const stationboard: Array<StationboardItem> = [];
+
+                for (let item of response) {
+                    if (moment.unix(item.stop.departureTimestamp).isBefore(maxDate)) {
+                        stationboard.push(item);
+                    }
+                }
+
+                return stationboard;
+            });
     }
 }

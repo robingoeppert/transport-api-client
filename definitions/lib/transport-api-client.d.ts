@@ -1,9 +1,8 @@
 import { Location } from './objects/location';
-import { Connection } from './objects/connection';
-import { Journey } from './objects/journey';
 import { LocationRequest } from './requests/location-request';
 import { ConnectionRequest } from './requests/connection-request';
 import { StationboardRequest } from './requests/stationboard-request';
+import { StationboardItem } from './objects/stationboard-item';
 export declare class TransportApiClient {
     /**
      * Provides a custom location request by location name
@@ -43,6 +42,10 @@ export declare class TransportApiClient {
      * @return {Promise<Array<Location>>}
      */
     getStationsIn(locationName: string): Promise<Array<Location>>;
-    getConnections(): Array<Connection>;
-    getStationboard(): Array<Journey>;
+    /**
+     * Get the departures of a station for the next hour, but at max. 10 departures
+     * @param {string} stationName
+     * @return {Array<StationboardItem>}
+     */
+    getNextDepartures(stationName: string): Promise<Array<StationboardItem>>;
 }
