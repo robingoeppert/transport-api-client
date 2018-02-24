@@ -44,7 +44,7 @@ describe('LocationRequest', () => {
 
     describe('Valid request by name', () => {
         it('responds as expected', () => {
-            LocationRequest
+            return LocationRequest
                 .byName('Rafz')
                 .ofType(LocationType.POINT_OF_INTEREST)
                 .send()
@@ -58,7 +58,7 @@ describe('LocationRequest', () => {
 
     describe('Valid request by coordinates', () => {
         it('responds as expected', () => {
-            LocationRequest
+            return LocationRequest
                 .byCoordinates(45.332, 8.79)
                 .withTransports(TransportationType.BUS, TransportationType.S_SN_R)
                 .send()

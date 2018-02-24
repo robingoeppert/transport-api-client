@@ -138,7 +138,7 @@ describe('ConnectionRequest', () => {
 
     describe('Valid request by from and to', () => {
         it('responds as expected', () => {
-            ConnectionRequest
+            return ConnectionRequest
                 .byFromTo('Rafz', 'Bern')
                 .bikesAllowed(true)
                 .atTime(new Date())
