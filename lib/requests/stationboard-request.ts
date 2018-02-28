@@ -13,11 +13,21 @@ export class StationboardRequest extends TransportApiRequest {
     }
 
 
+    /**
+     * Creates new StationboardRequest for station found by name
+     * @param {string} name station
+     * @return {StationboardRequest} new request
+     */
     public static byStationName(name: string): StationboardRequest {
         return new StationboardRequest()
             .addParam('station', name);
     }
 
+    /**
+     * Creates new StationboardRequest for station found by id
+     * @param {string} id station
+     * @return {StationboardRequest} new request
+     */
     public static byStationId(id: string): StationboardRequest {
         return new StationboardRequest()
             .addParam('id', id);

@@ -13,7 +13,7 @@ export class ConnectionRequest extends TransportApiRequest {
 
 
     /**
-     *
+     * Creates new ConnectionRequest by start and end location
      * @param {string} from location name
      * @param {string} to location name
      * @return {ConnectionRequest} new request
@@ -28,7 +28,7 @@ export class ConnectionRequest extends TransportApiRequest {
     /**
      * Find connections via specific location
      * @param {string} viaLocations
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     public via(...viaLocations: string[]): ConnectionRequest {
         for (let viaLocation of viaLocations) {
@@ -41,7 +41,7 @@ export class ConnectionRequest extends TransportApiRequest {
     /**
      * Find connections at a particular date (time ignored)
      * @param {Date} date
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     public onDate(date: Date): ConnectionRequest {
         const month: string = this.numberToTwoDigitString(date.getMonth() + 1);
@@ -56,7 +56,7 @@ export class ConnectionRequest extends TransportApiRequest {
     /**
      * Find connections for a specific time (day date ignored)
      * @param {Date} time
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     public atTime(time: Date): ConnectionRequest {
         const hours: string = this.numberToTwoDigitString(time.getHours());
@@ -68,7 +68,7 @@ export class ConnectionRequest extends TransportApiRequest {
     /**
      * Specifies if requested date and time are on arrival (or departure). Default is false => departure
      * @param {boolean} isArrival
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     public dateTimeIsArrival(isArrival: boolean): ConnectionRequest {
         return this.addParam('isArrivalTime', (isArrival ? '1' : '0'));
@@ -77,7 +77,7 @@ export class ConnectionRequest extends TransportApiRequest {
     /**
      * Find connections with specific type(s) of transportation
      * @param {TransportationType} transportations
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     public withTransports(...transportations: TransportationType[]): ConnectionRequest {
         for (let transportation of transportations) {
@@ -90,7 +90,7 @@ export class ConnectionRequest extends TransportApiRequest {
     /**
      * Limit the responded connections
      * @param {number} limit
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     public limitResponse(limit: number): ConnectionRequest {
         return this.addParam('limit', String(limit));
@@ -99,7 +99,7 @@ export class ConnectionRequest extends TransportApiRequest {
     /**
      * Pagination of response. Page number is zero-based (param 0 is first page)
      * @param {number} page
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     public pageOfResponse(page: number): ConnectionRequest {
         return this.addParam('page', String(page));
@@ -108,7 +108,7 @@ export class ConnectionRequest extends TransportApiRequest {
     /**
      * If set to true, only direct connections get requested. Default is false
      * @param {boolean} isDirectConnection
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     public onlyDirect(isDirectConnection: boolean): ConnectionRequest {
         return this.addParam('direct', (isDirectConnection ? '1' : '0'));
@@ -117,7 +117,7 @@ export class ConnectionRequest extends TransportApiRequest {
     /**
      * If set to true, only night trains with beds get listed
      * @param {boolean} hasBeds
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     public hasBeds(hasBeds: boolean): ConnectionRequest {
         return this.addParam('sleeper', (hasBeds? '1' : '0'));
@@ -126,7 +126,7 @@ export class ConnectionRequest extends TransportApiRequest {
     /**
      * If set to true, only night trains with couchettes get listed
      * @param {boolean} hasCouchettes
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     public hasCouchettes(hasCouchettes: boolean): ConnectionRequest {
         return this.addParam('couchette', (hasCouchettes ? '1' : '0'));
@@ -135,7 +135,7 @@ export class ConnectionRequest extends TransportApiRequest {
     /**
      * If set to true, only trains allowing the transport of bicycles get listed
      * @param {boolean} allowed
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     public bikesAllowed(allowed: boolean): ConnectionRequest {
         return this.addParam('bike', (allowed ? '1': '0'));
@@ -144,7 +144,7 @@ export class ConnectionRequest extends TransportApiRequest {
     /**
      * Restrict response by accessibility of vehicle
      * @param {AccessibilityType} accessibility
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     public accessibleBy(accessibility: AccessibilityType): ConnectionRequest {
         return this.addParam('accessibility', accessibility);

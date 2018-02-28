@@ -15,7 +15,7 @@ export class LocationRequest extends TransportApiRequest {
     /**
      * Creates new LocationRequest finding locations by name
      * @param query Location search string
-     * @returns new LocationsRequest
+     * @returns new request
      */
     public static byName(query: string): LocationRequest {
         return new LocationRequest()
@@ -26,7 +26,7 @@ export class LocationRequest extends TransportApiRequest {
      * Creates new LocationRequest finding locations by coordinates
      * @param x Latitude coordinate
      * @param y Longitude coordinate
-     * @returns new LocationsRequest
+     * @returns new request
      */
     public static byCoordinates(x: number, y: number): LocationRequest {
         return new LocationRequest()
@@ -38,7 +38,7 @@ export class LocationRequest extends TransportApiRequest {
     /**
      * Find locations of specific type. Works only with byName
      * @param {LocationType} type
-     * @returns {LocationRequest}
+     * @returns {LocationRequest} this request
      */
     public ofType(type: LocationType): LocationRequest {
         return this.addParam('type', type);
@@ -47,6 +47,7 @@ export class LocationRequest extends TransportApiRequest {
     /**
      * Find locations which have access to specific type(s) of transportation. Works only with byCoordinates
      * @param {TransportationType} transportations
+     * @returns {LocationRequest} this request
      */
     public withTransports(...transportations: TransportationType[]): LocationRequest {
         for (let transportation of transportations) {

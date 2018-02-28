@@ -18,7 +18,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
         return _super.call(this, 'connections') || this;
     }
     /**
-     *
+     * Creates new ConnectionRequest by start and end location
      * @param {string} from location name
      * @param {string} to location name
      * @return {ConnectionRequest} new request
@@ -31,7 +31,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
     /**
      * Find connections via specific location
      * @param {string} viaLocations
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     ConnectionRequest.prototype.via = function () {
         var viaLocations = [];
@@ -47,7 +47,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
     /**
      * Find connections at a particular date (time ignored)
      * @param {Date} date
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     ConnectionRequest.prototype.onDate = function (date) {
         var month = this.numberToTwoDigitString(date.getMonth() + 1);
@@ -59,7 +59,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
     /**
      * Find connections for a specific time (day date ignored)
      * @param {Date} time
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     ConnectionRequest.prototype.atTime = function (time) {
         var hours = this.numberToTwoDigitString(time.getHours());
@@ -69,7 +69,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
     /**
      * Specifies if requested date and time are on arrival (or departure). Default is false => departure
      * @param {boolean} isArrival
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     ConnectionRequest.prototype.dateTimeIsArrival = function (isArrival) {
         return this.addParam('isArrivalTime', (isArrival ? '1' : '0'));
@@ -77,7 +77,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
     /**
      * Find connections with specific type(s) of transportation
      * @param {TransportationType} transportations
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     ConnectionRequest.prototype.withTransports = function () {
         var transportations = [];
@@ -93,7 +93,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
     /**
      * Limit the responded connections
      * @param {number} limit
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     ConnectionRequest.prototype.limitResponse = function (limit) {
         return this.addParam('limit', String(limit));
@@ -101,7 +101,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
     /**
      * Pagination of response. Page number is zero-based (param 0 is first page)
      * @param {number} page
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     ConnectionRequest.prototype.pageOfResponse = function (page) {
         return this.addParam('page', String(page));
@@ -109,7 +109,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
     /**
      * If set to true, only direct connections get requested. Default is false
      * @param {boolean} isDirectConnection
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     ConnectionRequest.prototype.onlyDirect = function (isDirectConnection) {
         return this.addParam('direct', (isDirectConnection ? '1' : '0'));
@@ -117,7 +117,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
     /**
      * If set to true, only night trains with beds get listed
      * @param {boolean} hasBeds
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     ConnectionRequest.prototype.hasBeds = function (hasBeds) {
         return this.addParam('sleeper', (hasBeds ? '1' : '0'));
@@ -125,7 +125,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
     /**
      * If set to true, only night trains with couchettes get listed
      * @param {boolean} hasCouchettes
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     ConnectionRequest.prototype.hasCouchettes = function (hasCouchettes) {
         return this.addParam('couchette', (hasCouchettes ? '1' : '0'));
@@ -133,7 +133,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
     /**
      * If set to true, only trains allowing the transport of bicycles get listed
      * @param {boolean} allowed
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     ConnectionRequest.prototype.bikesAllowed = function (allowed) {
         return this.addParam('bike', (allowed ? '1' : '0'));
@@ -141,7 +141,7 @@ var ConnectionRequest = /** @class */ (function (_super) {
     /**
      * Restrict response by accessibility of vehicle
      * @param {AccessibilityType} accessibility
-     * @return {ConnectionRequest}
+     * @return {ConnectionRequest} this request
      */
     ConnectionRequest.prototype.accessibleBy = function (accessibility) {
         return this.addParam('accessibility', accessibility);

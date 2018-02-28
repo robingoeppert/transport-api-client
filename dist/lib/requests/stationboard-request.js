@@ -17,10 +17,20 @@ var StationboardRequest = /** @class */ (function (_super) {
     function StationboardRequest() {
         return _super.call(this, 'stationboard') || this;
     }
+    /**
+     * Creates new StationboardRequest for station found by name
+     * @param {string} name station
+     * @return {StationboardRequest} new request
+     */
     StationboardRequest.byStationName = function (name) {
         return new StationboardRequest()
             .addParam('station', name);
     };
+    /**
+     * Creates new StationboardRequest for station found by id
+     * @param {string} id station
+     * @return {StationboardRequest} new request
+     */
     StationboardRequest.byStationId = function (id) {
         return new StationboardRequest()
             .addParam('id', id);

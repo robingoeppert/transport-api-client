@@ -4,7 +4,17 @@ import { StationboardType } from '../enums/stationboard-type';
 import { StationboardItem } from '../objects/stationboard-item';
 export declare class StationboardRequest extends TransportApiRequest {
     private constructor();
+    /**
+     * Creates new StationboardRequest for station found by name
+     * @param {string} name station
+     * @return {StationboardRequest} new request
+     */
     static byStationName(name: string): StationboardRequest;
+    /**
+     * Creates new StationboardRequest for station found by id
+     * @param {string} id station
+     * @return {StationboardRequest} new request
+     */
     static byStationId(id: string): StationboardRequest;
     /**
      * Limit responded departures/arrivals

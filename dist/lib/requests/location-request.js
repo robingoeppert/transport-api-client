@@ -20,7 +20,7 @@ var LocationRequest = /** @class */ (function (_super) {
     /**
      * Creates new LocationRequest finding locations by name
      * @param query Location search string
-     * @returns new LocationsRequest
+     * @returns new request
      */
     LocationRequest.byName = function (query) {
         return new LocationRequest()
@@ -30,7 +30,7 @@ var LocationRequest = /** @class */ (function (_super) {
      * Creates new LocationRequest finding locations by coordinates
      * @param x Latitude coordinate
      * @param y Longitude coordinate
-     * @returns new LocationsRequest
+     * @returns new request
      */
     LocationRequest.byCoordinates = function (x, y) {
         return new LocationRequest()
@@ -40,7 +40,7 @@ var LocationRequest = /** @class */ (function (_super) {
     /**
      * Find locations of specific type. Works only with byName
      * @param {LocationType} type
-     * @returns {LocationRequest}
+     * @returns {LocationRequest} this request
      */
     LocationRequest.prototype.ofType = function (type) {
         return this.addParam('type', type);
@@ -48,6 +48,7 @@ var LocationRequest = /** @class */ (function (_super) {
     /**
      * Find locations which have access to specific type(s) of transportation. Works only with byCoordinates
      * @param {TransportationType} transportations
+     * @returns {LocationRequest} this request
      */
     LocationRequest.prototype.withTransports = function () {
         var transportations = [];
